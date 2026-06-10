@@ -1,4 +1,5 @@
 import "./semiNav.css"
+
 import menuimg from '../../assets/menu.svg';
 
 
@@ -21,9 +22,10 @@ function SemiNav(){
         }
       </div>
       <div className="semiNavRight">
-        <img className="rightImg" src="https://m.media-amazon.com/images/G/31/img19/SiddMiniTV/Made_In_India_-_Titan_400x39_SWM_01_New._CB762157139_.jpg"/>
+        <img className="rightImg" src="https://m.media-amazon.com/images/G/31/img19/SiddMiniTV/Made_In_India_-_Titan_400x39_SWM_01_New._CB762157139_.jpg" alt="img"/>
       </div>
     </div>
   )
 }
 export default SemiNav;
+// jfedffffds

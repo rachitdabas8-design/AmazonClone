@@ -1,4 +1,5 @@
 import './navbar.css'
+import { Link } from "react-router-dom"
 import amazonimg from '../../assets/amazon.svg';
 import locationimg from '../../assets/location.svg';
 import down from '../../assets/downarrow.png';
@@ -27,8 +28,10 @@ function Nav(){
             <div className='searchbox'>
                 <div className='searchdiv'>
                     <div className='searchBoxall'>
-                        <div className='searchBoxtext'>All</div>
-                        <img  src={down} alt='downIcon' />
+                        <div className='searchBoxtext'>
+                            All 
+                            <img  src={down} alt='downIcon' /> </div>
+                        
                     </div>
                     <input className='InputsearchBox' type='text' placeholder='Search Amazon.in' />
                     
@@ -54,9 +57,10 @@ function Nav(){
                     <div className='bottomtext'> & Orders</div>
                 </div>
                 <div className='rightsidetext'>
+                    <Link to="/cart">
                     <span className='totalnoitem'>0</span>
                     <img className='cartlogo' src={cart} alt='cartlogo'/>
-                    
+                    </Link>
                 </div>
                 
             </div>
