@@ -78,6 +78,7 @@
   padding: 5px;
   cursor: pointer;
   color: #999999;
+  position: relative;
 }
 .searchBoxtext{
   font-size: 12px;
@@ -179,3 +180,23 @@
   height: 25px; 
 }
 
+
+
+.categoryDropdown{
+    position: absolute;
+    top: 100%;
+    width: 240px;
+    background: white;   
+}
+
+
+
+
+.categoryItem{
+    padding: 10px;
+    color: black;
+    font-size: 14px;
+    &:hover{
+      background-color: #f3f3f3;
+    }
+}
