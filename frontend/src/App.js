@@ -5,6 +5,7 @@ import Nav from './components/Navbar/navbar.js';
 import SemiNav from './components/SemiNav/semiNav.js';
 import HomeBackground from './components/Home/homebackground.js';
 import Cart from './components/Pages/Categories/cart.js';
+import Login from './components/Pages/Login/login.js';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         } />
 
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
   );
