@@ -6,6 +6,7 @@ import SemiNav from './components/SemiNav/semiNav.js';
 import HomeBackground from './components/Home/homebackground.js';
 import Cart from './components/Pages/Categories/cart.js';
 import Login from './components/Pages/Login/login.js';
+import singIn from './components/Navbar/SignIn/signIn.js';
 
 
 function App() {

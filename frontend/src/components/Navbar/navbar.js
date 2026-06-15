@@ -1,6 +1,7 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SignIn from "./SignIn/signIn.js"
 import amazonimg from "../../assets/amazon.svg";
 import locationimg from "../../assets/location.svg";
 import down from "../../assets/downarrow.png";
@@ -11,17 +12,10 @@ import cart from "../../assets/cart.png";
 function Nav() {
   const categories = [
     "All Categories",
-    "Alexa Skills",
     "Amazon Devices",
-    "Amazon Fashion",
-    "Amazon Fresh",
-    "Amazon Pharmacy",
     "Appliances",
     "Apps & Games",
-    "Audible Audiobooks",
-    "Baby",
     "Beauty",
-    "Books",
     "Car & Motorbike",
     "Clothing & Accessories",
     "Computers & Accessories",
@@ -99,13 +93,7 @@ function Nav() {
             <img src={down} alt="downIcon" />
           </div>
         </div>
-        <div className="rightsidetext">
-          <div className="toptext">
-            <Link to="/login">Hello, user</Link>
-          </div>
-          <div className="bottomtext">
-            <Link to="/login">Account & Lists</Link>
-          </div>
+        <SignIn/>
         </div>
         <div className="rightsidetext">
           <div className="toptext">Returns</div>
@@ -118,7 +106,7 @@ function Nav() {
           </Link>
         </div>
       </div>
-    </div>
+    
   );
 }
 

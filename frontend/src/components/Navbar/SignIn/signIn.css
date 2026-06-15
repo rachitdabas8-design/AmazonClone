@@ -1,0 +1,67 @@
+.account{
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.dropdown{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 500px;
+    background: white;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    padding: 15px;
+}
+
+.signinBtn{
+    display: block;
+    margin: 0 auto 15px;
+    width: 220px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffd814;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.signinBtn:hover{
+    background-color: #f7ca00;
+}
+
+.dropdown-content{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+   
+}
+
+.dropdown-left,
+.dropdown-right{
+    flex: 1;
+}
+
+.dropdown-left h3,
+.dropdown-right h3{
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.dropdown-left p,
+.dropdown-right p{
+    margin: 8px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown-left p:hover,
+.dropdown-right p:hover{
+    color: #c7511f;
+    text-decoration: underline;
+}
