@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-function SingIn() {
+function SignIn() {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -44,4 +44,4 @@ function SingIn() {
   );
 }
 
-export default SingIn;
+export default SignIn;

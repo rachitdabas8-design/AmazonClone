@@ -1,7 +1,7 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import SignIn from "./SignIn/signIn.js"
+import SignIn from "./SignIn/signIn.js";
 import amazonimg from "../../assets/amazon.svg";
 import locationimg from "../../assets/location.svg";
 import down from "../../assets/downarrow.png";
@@ -88,25 +88,24 @@ function Nav() {
         <div className="india">
           <img className="indiaflag" src={india} alt="indiaFlag" />
           <div className="bottomtext">
-           
             EN
             <img src={down} alt="downIcon" />
           </div>
         </div>
-        <SignIn/>
-        </div>
-        <div className="rightsidetext">
-          <div className="toptext">Returns</div>
-          <div className="bottomtext"> & Orders</div>
-        </div>
-        <div className="rightsidetext">
-          <Link to="/cart">
-            <span className="totalnoitem">0</span>
-            <img className="cartlogo" src={cart} alt="cartlogo" />
-          </Link>
-        </div>
+        <SignIn />
+      
+      <div className="rightsidetext">
+        <div className="toptext">Returns</div>
+        <div className="bottomtext"> & Orders</div>
       </div>
-    
+      <div className="rightsidetext">
+        <Link to="/cart">
+          <span className="totalnoitem">0</span>
+          <img className="cartlogo" src={cart} alt="cartlogo" />
+        </Link>
+      </div>
+    </div>
+  </div>
   );
 }
 
