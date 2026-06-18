@@ -1,0 +1,48 @@
+.cart {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #eaeded;
+  min-height: 100vh;
+}
+
+.cartLeft {
+  flex: 3;
+  background: white;
+  padding: 20px;
+}
+
+.cartRight {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  height: fit-content;
+}
+
+.cartItem {
+  display: flex;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cartItem img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.itemname {
+  flex: 1;
+}
+
+
+
+.buyBtn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #ffd814;
+  border-radius: 20px;
+  cursor: pointer;
+}

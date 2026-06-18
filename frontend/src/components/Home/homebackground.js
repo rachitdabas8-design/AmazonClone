@@ -1,7 +1,30 @@
 import "./homebackground.css";
-import { Link } from "react-router-dom";
 
-function HomeBackground() {
+function HomeBackground({ addToCart }) {
+  const products = [
+    {
+      id: 1,
+      name: "iPhone 15",
+      price: 79999,
+      image:
+        "https://m.media-amazon.com/images/I/61bK6PMOC3L._SX679_.jpg",
+    },
+    {
+      id: 2,
+      name: "Boat Headphones",
+      price: 1499,
+      image:
+        "https://m.media-amazon.com/images/I/61u1VALn6JL._SX679_.jpg",
+    },
+    {
+      id: 3,
+      name: "Samsung Galaxy",
+      price: 54999,
+      image:
+        "https://m.media-amazon.com/images/I/71cQWYVtcBL._SX679_.jpg",
+    },
+  ];
+
   return (
     <div className="homeBackground">
       <img
@@ -10,45 +33,22 @@ function HomeBackground() {
         alt="backgroundimg"
       />
 
-      <div className="productSection">
-        <div className="productCard">
-          <h3>iPhone 15</h3>
+      <div className="productsContainer">
+        {products.map((product) => (
+          <div className="productCard" key={product.id}>
+            <img src={product.image} alt={product.name} />
 
-          <img
-            src="https://m.media-amazon.com/images/I/61bK6PMOC3L._SX679_.jpg"
-            alt="iPhone"
-          />
+            <h3>{product.name}</h3>
 
-          <p>₹99,999</p>
+            <p>₹{product.price}</p>
 
-          <button>Add to Cart</button>
-        </div>
-
-        <div className="productCard">
-          <h3>Boat Headphones</h3>
-
-          <img
-            src="https://m.media-amazon.com/images/I/61u1VALn6JL._SX679_.jpg"
-            alt="Boat"
-          />
-
-          <p>₹1,499</p>
-
-          <button>Add to Cart</button>
-        </div>
-
-        <div className="productCard">
-          <h3>Samsung Galaxy</h3>
-
-          <img
-            src="https://m.media-amazon.com/images/I/71cQWYVtcBL._SX679_.jpg"
-            alt="Samsung"
-          />
-
-          <p>₹54,999</p>
-
-          <button>Add to Cart</button>
-        </div>
+            <button
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
