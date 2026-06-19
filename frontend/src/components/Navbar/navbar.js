@@ -1,34 +1,32 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SignIn from "./SignIn/signIn.js";
 import amazonimg from "../../assets/amazon.svg";
 import locationimg from "../../assets/location.svg";
 import down from "../../assets/downarrow.png";
 import searchicon from "../../assets/search.png";
 import india from "../../assets/india.png";
 import cart from "../../assets/cart.png";
+
 function Nav() {
-  const categories = ["All Categories",
-        "Alexa Skills",
-        "Amazon Devices",
-        "Amazon Fashion",
-        "Amazon Fresh",
-        "Amazon Pharmacy",
-        "Appliances",
-        "Apps & Games",
-        "Audible Audiobooks",
-        "Baby",
-        "Beauty",
-        "Books",
-        "Car & Motorbike",
-        "Clothing & Accessories",
-        "Computers & Accessories",
-        "Deals",
-        "Electronics",
-        "Furniture",
-        "Garden & Outdoors"];
+  const categories = [
+    "All Categories",
+    "Amazon Devices",
+    "Appliances",
+    "Apps & Games",
+    "Beauty",
+    "Car & Motorbike",
+    "Clothing & Accessories",
+    "Computers & Accessories",
+    "Deals",
+    "Electronics",
+    "Furniture",
+    "Garden & Outdoors",
+  ];
 
   const [showCategory, setShowCategory] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
     <div className="navbar">
@@ -48,19 +46,26 @@ function Nav() {
 
       <div className="searchbox">
         <div className="searchdiv">
-          <div
-            className="searchBoxall"
-            onClick={() => setShowCategory(!showCategory)}
-          >
-            <div className="searchBoxtext">
-              All
+          <div className="searchBoxall">
+            <div
+              className="searchBoxtext"
+              onClick={() => setShowCategory(!showCategory)}
+            >
+              <label>{selectedCategory}</label>
               <img src={down} alt="downIcon" />
             </div>
 
             {showCategory && (
               <div className="categoryDropdown">
                 {categories.map((item, index) => (
-                  <div key={index} className="categoryItem">
+                  <div
+                    key={index}
+                    className="categoryItem"
+                    onClick={() => {
+                      setSelectedCategory(item);
+                      setShowCategory(false);
+                    }}
+                  >
                     {item}
                   </div>
                 ))}
@@ -83,27 +88,24 @@ function Nav() {
         <div className="india">
           <img className="indiaflag" src={india} alt="indiaFlag" />
           <div className="bottomtext">
-            {" "}
             EN
             <img src={down} alt="downIcon" />
           </div>
         </div>
-        <div className="rightsidetext">
-          <div className="toptext">Hello, user</div>
-          <div className="bottomtext">Account & Lists</div>
-        </div>
-        <div className="rightsidetext">
-          <div className="toptext">Returns</div>
-          <div className="bottomtext"> & Orders</div>
-        </div>
-        <div className="rightsidetext">
-          <Link to="/cart">
-            <span className="totalnoitem">0</span>
-            <img className="cartlogo" src={cart} alt="cartlogo" />
-          </Link>
-        </div>
+        <SignIn />
+      
+      <div className="rightsidetext">
+        <div className="toptext">Returns</div>
+        <div className="bottomtext"> & Orders</div>
+      </div>
+      <div className="rightsidetext">
+        <Link to="/cart">
+          <span className="totalnoitem">0</span>
+          <img className="cartlogo" src={cart} alt="cartlogo" />
+        </Link>
       </div>
     </div>
+  </div>
   );
 }
 
