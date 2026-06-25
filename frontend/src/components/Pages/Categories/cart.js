@@ -21,7 +21,7 @@ function Cart() {
       method: "DELETE",
     });
 
-    getCart();
+    await getCart();
   };
 
   let total = 0;

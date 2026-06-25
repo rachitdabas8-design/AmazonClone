@@ -1,5 +1,5 @@
 from database import SessionLocal, engine, get_db
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import Base, User, Cart
 from schemas import UserCreate, CartItem
@@ -66,4 +66,5 @@ def delete_cart(id: int, db: Session = Depends(get_db)):
 
         return {"message": "Product Deleted"}
 
-    return {"message": "Product Not Found"}
+  
+    raise HTTPException(status_code=404, detail="Product Not Found")
