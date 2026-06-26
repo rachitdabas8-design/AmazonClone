@@ -100,7 +100,7 @@ function Nav() {
       </div>
       <div className="rightsidetext">
         <Link to="/cart">
-        
+          
           <img className="cartlogo" src={cart} alt="cartlogo" />
         </Link>
       </div>

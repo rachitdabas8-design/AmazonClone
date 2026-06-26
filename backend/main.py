@@ -23,7 +23,11 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
 
     if existing_user:
-        return {"success": True, "message": "Welcome Back"}
+        return {
+            "success": True,
+            "message": "Welcome Back",
+            "user_id": existing_user.id
+        }
 
     new_user = User(email=user.email)
 
@@ -31,13 +35,22 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    return {"success": True, "message": "Account Created"}
+    return {
+        "success": True,
+        "message": "Account Created",
+        "user_id": new_user.id
+    }
 
 
 @app.post("/cart")
 def add_cart(item: CartItem, db: Session = Depends(get_db)):
 
-    product = Cart(name=item.name, price=item.price, image=item.image)
+    product = Cart(
+        user_id=item.user_id,
+        name=item.name,
+        price=item.price,
+        image=item.image
+    )
 
     db.add(product)
     db.commit()
@@ -46,10 +59,10 @@ def add_cart(item: CartItem, db: Session = Depends(get_db)):
     return {"message": "Product Added Successfully"}
 
 
-@app.get("/cart")
-def get_cart(db: Session = Depends(get_db)):
+@app.get("/cart/{user_id}")
+def get_cart(user_id: int, db: Session = Depends(get_db)):
 
-    products = db.query(Cart).all()
+    products = db.query(Cart).filter(Cart.user_id == user_id).all()
 
     return products
 
@@ -60,10 +73,8 @@ def delete_cart(id: int, db: Session = Depends(get_db)):
     product = db.query(Cart).filter(Cart.id == id).first()
 
     if product:
-
         db.delete(product)
         db.commit()
-
         return {"message": "Product Deleted"}
 
     return {"message": "Product Not Found"}
