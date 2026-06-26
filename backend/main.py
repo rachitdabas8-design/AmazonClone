@@ -1,5 +1,5 @@
 from database import SessionLocal, engine, get_db
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import Base, User, Cart
 from schemas import UserCreate, CartItem
@@ -35,22 +35,13 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    return {
-        "success": True,
-        "message": "Account Created",
-        "user_id": new_user.id
-    }
+    return {"success": True, "message": "Account Created"}
 
 
 @app.post("/cart")
 def add_cart(item: CartItem, db: Session = Depends(get_db)):
 
-    product = Cart(
-        user_id=item.user_id,
-        name=item.name,
-        price=item.price,
-        image=item.image
-    )
+    product = Cart(name=item.name, price=item.price, image=item.image)
 
     db.add(product)
     db.commit()
@@ -73,8 +64,11 @@ def delete_cart(id: int, db: Session = Depends(get_db)):
     product = db.query(Cart).filter(Cart.id == id).first()
 
     if product:
+
         db.delete(product)
         db.commit()
+
         return {"message": "Product Deleted"}
 
-    return {"message": "Product Not Found"}
+  
+    raise HTTPException(status_code=404, detail="Product Not Found")
