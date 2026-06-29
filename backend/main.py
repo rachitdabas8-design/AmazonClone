@@ -51,8 +51,6 @@ def get_cart(db: Session = Depends(get_db)):
 
     products = db.query(Cart).all()
 
-    return products
-
 
 
 @app.delete("/cart/{id}")
