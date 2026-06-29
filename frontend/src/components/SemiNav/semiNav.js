@@ -28,4 +28,3 @@ function SemiNav(){
   )
 }
 export default SemiNav;
-// jfedffffds

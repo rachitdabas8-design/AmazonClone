@@ -6,6 +6,8 @@ import SemiNav from "./components/SemiNav/semiNav.js";
 import HomeBackground from "./components/Home/homebackground.js";
 import Cart from "./components/Pages/Categories/cart.js";
 import Login from "./components/Pages/Login/login.js";
+import Address from "./components/Pages/Address/address.js";
+
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -42,7 +44,8 @@ function App() {
       />
 
       <Route path="/login" element={<Login />} />
-      <Route path="/cart" element={<cart />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/address" element={<Address />} />
     </Routes>
   );
 }
