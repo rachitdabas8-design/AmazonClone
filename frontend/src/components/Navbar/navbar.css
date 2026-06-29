@@ -166,14 +166,7 @@
   align-items: center;
   font-weight: 700;
 }
-.totalnoitem{
-  position: absolute;
-  left: 36%;
-  bottom: 75%;
-  color: #febd69;
-  font-size: 15px;
-  font-weight: 800;
-}
+
 
 .cartlogo{
   width: 25px;

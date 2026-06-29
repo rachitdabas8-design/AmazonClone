@@ -1,6 +1,29 @@
-import "./cart.css";
+import style from "./cart.module.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function Cart({ cart, removeFromCart }) {
+function Cart() {
+  const [cart, setCart] = useState([]);
+
+  const getCart = async () => {
+    const response = await fetch("http://127.0.0.1:8000/cart");
+
+    const data = await response.json();
+
+    setCart(data);
+  };
+
+  useEffect(() => {
+    getCart();
+  }, []);
+
+  const removeFromCart = async (id) => {
+    await fetch("http://127.0.0.1:8000/cart/" + id, {
+      method: "DELETE",
+    });
+
+    await getCart();
+  };
 
   let total = 0;
 
@@ -9,54 +32,41 @@ function Cart({ cart, removeFromCart }) {
   });
 
   return (
-    <div className="cart">
-
-      <div className="cartLeft">
-
-        <h2>Shopping Cart</h2>
+    <div className={style.cart}>
+      <div className={style.cartLeft}>
+        <div>
+          <Link to="/">
+            <button className={style.backBtn}>Back</button>
+          </Link>
+          <h2>Shopping Cart</h2>
+        </div>
 
         {cart.length === 0 && <h3>Cart is Empty</h3>}
 
-        {cart.map((item, index) => {
+        {cart.map((item) => (
+          <div className={style.cartItem} key={item.id}>
+            <img src={item.image} alt={item.name} />
 
-          return (
-            <div className="cartItem" key={index}>
+            <div className={style.itemname}>
+              <h3>{item.name}</h3>
 
-              <img src={item.image} alt={item.name} />
+              <p>In Stock</p>
 
-              <div className="itemname">
-
-                <h3>{item.name}</h3>
-
-                <p>In Stock</p>
-
-                <button onClick={() => removeFromCart(index)}>
-                  Delete
-                </button>
-
-              </div>
-
-              <h4>₹{item.price}</h4>
-
+              <button onClick={() => removeFromCart(item.id)}>Delete</button>
             </div>
-          );
 
-        })}
-
+            <h4>₹{item.price}</h4>
+          </div>
+        ))}
       </div>
 
-      <div className="cartRight">
-
+      <div className={style.cartRight}>
         <h3>Subtotal ({cart.length} items)</h3>
-
         <h2>₹{total}</h2>
-
-        <button className="buyBtn">
-          Proceed to Buy
-        </button>
-
+        <Link to="/address">
+          <button className={style.buyBtn}>Proceed to Buy</button>
+        </Link>
       </div>
-
     </div>
   );
 }

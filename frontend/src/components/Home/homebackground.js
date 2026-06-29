@@ -1,29 +1,40 @@
 import "./homebackground.css";
 
-function HomeBackground({ addToCart }) {
+function HomeBackground() {
   const products = [
     {
       id: 1,
       name: "iPhone 15",
       price: 79999,
-      image:
-        "https://m.media-amazon.com/images/I/61bK6PMOC3L._SX679_.jpg",
+      image: "https://m.media-amazon.com/images/I/61bK6PMOC3L._SX679_.jpg",
     },
     {
       id: 2,
       name: "Boat Headphones",
       price: 1499,
-      image:
-        "https://m.media-amazon.com/images/I/61u1VALn6JL._SX679_.jpg",
+      image: "https://m.media-amazon.com/images/I/61u1VALn6JL._SX679_.jpg",
     },
     {
       id: 3,
       name: "Samsung Galaxy",
       price: 54999,
-      image:
-        "https://m.media-amazon.com/images/I/71cQWYVtcBL._SX679_.jpg",
+      image: "https://m.media-amazon.com/images/I/71cQWYVtcBL._SX679_.jpg",
     },
   ];
+  const addToCart = async (product) => {
+    const response = await fetch ( "http://127.0.0.1:8000/cart", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+  };
 
   return (
     <div className="homeBackground">
@@ -42,11 +53,7 @@ function HomeBackground({ addToCart }) {
 
             <p>₹{product.price}</p>
 
-            <button
-              onClick={() => addToCart(product)}
-            >
-              Add to Cart
-            </button>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
           </div>
         ))}
       </div>
