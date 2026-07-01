@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 function Login() {
 
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
 
   async function homepage() {
@@ -17,11 +16,9 @@ function Login() {
 
     const response = await fetch("http://127.0.0.1:8000/login", {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify({
         email: email,
       }),
@@ -32,9 +29,25 @@ function Login() {
     alert(data.message);
 
     if (data.success) {
+
+
+
+
+      // ✅ SAVE EMAIL FOR ADDRESS PAGE
+      localStorage.setItem("email", email);
+
+      // (optional) save address if backend returns it
+      if (data.address) {
+        localStorage.setItem("address", JSON.stringify(data.address));
+      }
+
       navigate("/");
     }
   }
+
+
+  
+
 
   return (
     <div className="loginPage">
@@ -56,8 +69,7 @@ function Login() {
         </button>
 
         <div className="loginterms">
-          By continuing, you agree to Amazon's Conditions of Use and Privacy
-          Notice.
+          By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.
         </div>
 
         <hr />
