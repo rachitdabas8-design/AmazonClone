@@ -7,6 +7,7 @@ import HomeBackground from "./components/Home/homebackground.js";
 import Cart from "./components/Pages/Categories/cart.js";
 import Login from "./components/Pages/Login/login.js";
 import Address from "./components/Pages/Address/address.js";
+import Payment from "./components/Pages/Payment/payment.js";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/address" element={<Address />} />
+      <Route path="/payment" element={<Payment />} />
     </Routes>
   );
 }

@@ -1,10 +1,15 @@
 from pydantic import BaseModel
-from typing import Optional
 
 
 # ---------------- USER SCHEMA ----------------
 class UserCreate(BaseModel):
     email: str
+    password: str
+
+
+
+
+
 class AddressCreate(BaseModel):
     full_name: str
     mobile: str
@@ -14,6 +19,7 @@ class AddressCreate(BaseModel):
 
 # ---------------- CART SCHEMA ----------------
 class CartItem(BaseModel):
+    user_id: int
     name: str
     price: int
     image: str

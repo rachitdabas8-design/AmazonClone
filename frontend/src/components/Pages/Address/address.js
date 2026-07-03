@@ -1,8 +1,9 @@
 import style from "./address.module.css";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Address() {
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     full_name: "",
@@ -14,7 +15,6 @@ function Address() {
 
   const email = localStorage.getItem("email");
 
-  // ---------------- AUTO FILL ----------------
   useEffect(() => {
     const saved = localStorage.getItem("address");
 
@@ -23,7 +23,6 @@ function Address() {
     }
   }, []);
 
-  // ---------------- INPUT CHANGE ----------------
   function handleChange(e) {
     setForm({
       ...form,
@@ -31,7 +30,6 @@ function Address() {
     });
   }
 
-  // ---------------- SAVE ADDRESS ----------------
   async function saveAddress(e) {
     e.preventDefault();
 
@@ -50,6 +48,7 @@ function Address() {
     if (data.success) {
       // save locally for auto-fill next time
       localStorage.setItem("address", JSON.stringify(form));
+      navigate("/payment")
     }
   }
 

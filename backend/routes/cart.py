@@ -12,7 +12,7 @@ router = APIRouter(
 @router.post("")
 def add_cart(item: CartItem, db: Session = Depends(get_db)):
 
-    product = Cart(name=item.name, price=item.price, image=item.image)
+    product = Cart(user_id=item.user_id,name=item.name, price=item.price, image=item.image)
 
     db.add(product)
     db.commit()
@@ -20,10 +20,15 @@ def add_cart(item: CartItem, db: Session = Depends(get_db)):
 
     return {"message": "Product Added Successfully"}
 
+@router.get("/{user_id}")
+def get_cart(
+    user_id: int,
+    db: Session = Depends(get_db)
+):
 
-@router.get("")
-def get_cart(db: Session = Depends(get_db)):
-    return db.query(Cart).all()
+    return db.query(Cart).filter(
+        Cart.user_id == user_id
+    ).all()
 
 
 @router.delete("/{id}")

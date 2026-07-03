@@ -1,8 +1,8 @@
-from fastapi import APIRouter,Depends
-from sqlalchemy.orm import Session
 from database import get_db
+from fastapi import APIRouter, Depends
+from models import Address, User
 from schemas import AddressCreate
-from models import Address
+from sqlalchemy.orm import Session
 
 router = APIRouter(
     prefix= "/address",
@@ -12,24 +12,25 @@ router = APIRouter(
 @router.put("/{email}")
 def save_address(email: str, address: AddressCreate, db: Session = Depends(get_db)):
 
-    existing_address = db.query(Address).filter(
-        Address.user_email == email
+    user = db.query(User).filter(
+        User.email == email
     ).first()
 
-    # ---------------- UPDATE ----------------
-    if existing_address:
+    existing_address = db.query(Address).filter(
+        Address.user_id == user.id
+    ).first()
 
+
+    if existing_address:
         existing_address.full_name = address.full_name
         existing_address.mobile = address.mobile
         existing_address.house = address.house
         existing_address.city = address.city
         existing_address.pincode = address.pincode
 
-    # ---------------- CREATE ----------------
     else:
-
         new_address = Address(
-            user_email=email,
+            user_id=user.id,
             full_name=address.full_name,
             mobile=address.mobile,
             house=address.house,

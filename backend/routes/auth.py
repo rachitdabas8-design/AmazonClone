@@ -1,32 +1,45 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
 from database import get_db
+from fastapi import APIRouter, Depends
+from models import Address, User
 from schemas import UserCreate
-from models import User, Address
+from sqlalchemy.orm import Session
 
 router = APIRouter(
     prefix="/login",
     tags=["Authentication"])
 
 
+
+
 @router.post("")
 def login(user: UserCreate, db: Session = Depends(get_db)):
 
-    existing_user = db.query(User).filter(User.email == user.email).first()
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
 
-    # USER EXISTS → RETURN ADDRESS
+    # USER EXISTS
     if existing_user:
-        address = db.query(Address).filter(Address.user_email == user.email).first()
 
+        # PASSWORD CHECK
+        if existing_user.password != user.password:
+            return {
+                "success": False,
+                "message": "Wrong Password"
+            }
         return {
-            "success": True,
-            "message": "Welcome Back",
-            "email": existing_user.email,
-            "address": address,   
-        }
+        "success": True,
+        "message": "Welcome Back",
+        "user_id": existing_user.id
+       }
 
-    # NEW USER CREATE
-    new_user = User(email=user.email)
+        
+
+    # NEW USER
+    new_user = User(
+        email=user.email,
+        password=user.password
+    )
 
     db.add(new_user)
     db.commit()
@@ -35,6 +48,7 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
     return {
         "success": True,
         "message": "Account Created",
-        "email": new_user.email,
-        "address": None,
+        "user_id":new_user.id,
+        # "email": new_user.email,
+        "address": None
     }
