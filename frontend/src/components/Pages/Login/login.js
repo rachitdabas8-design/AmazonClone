@@ -29,19 +29,7 @@ function Login() {
       }),
     });
 
-    // const data = await response.json();
-
-    // alert(data.message);
-
-    // if (data.success) {
-    //   localStorage.setItem("email", email);
-
-    //   if (data.address) {
-    //     localStorage.setItem("address", JSON.stringify(data.address));
-    //   }
-
-    //   navigate("/");
-    // }
+ 
     const data = await response.json();
 
     alert(data.message);

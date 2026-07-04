@@ -17,7 +17,7 @@ class Address(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
 
     full_name = Column(String)
-    mobile = Column(String)
+    mobile = Column(String) 
     house = Column(String)
     city = Column(String)
     pincode = Column(String)
@@ -26,7 +26,7 @@ class Cart(Base):
     __tablename__ = "cart"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    user_id = Column(String, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
 
     name = Column(String)
     price = Column(Integer)

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PaymentPage = () => {
   return (
 
-    <div class="paymentPage">
+    <div className="paymentPage">
        <Link to="/address">
         <button>Back</button>
       </Link>
@@ -13,7 +13,7 @@ const PaymentPage = () => {
     <h1>Select Payment Method</h1>
 
    
-    <div class="paymentBox">
+    <div className="paymentBox">
 
         <h3>Delivery Address</h3>
 
@@ -28,7 +28,7 @@ const PaymentPage = () => {
     </div>
 
     
-    <div class="paymentBox">
+    <div className="paymentBox">
 
         <h3>Choose Payment</h3>
 
@@ -66,7 +66,7 @@ const PaymentPage = () => {
     </div>
 
     
-    <button class="placeOrderBtn">
+    <button className="placeOrderBtn">
         Place Order
     </button>
 

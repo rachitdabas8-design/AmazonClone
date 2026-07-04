@@ -16,6 +16,13 @@ def save_address(email: str, address: AddressCreate, db: Session = Depends(get_d
         User.email == email
     ).first()
 
+    if not user:
+        return {
+            "success": False,
+            "message": "User not found"
+        }
+
+
     existing_address = db.query(Address).filter(
         Address.user_id == user.id
     ).first()
