@@ -1,4 +1,3 @@
-
 import "./homebackground.css";
 
 function HomeBackground() {
@@ -23,13 +22,27 @@ function HomeBackground() {
     },
   ];
   const addToCart = async (product) => {
-    const response = await fetch ( "http://127.0.0.1:8000/cart", {
+    const email = localStorage.getItem("email");
+
+    if (!email) {
+      alert("Please Login First");
+      return;
+    }
+
+    const response = await fetch("http://127.0.0.1:8000/cart", {
       method: "POST",
 
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(product),
+
+      body: JSON.stringify({
+        user_id: Number(localStorage.getItem("user_id")),
+
+        name: product.name,
+        price: product.price,
+        image: product.image,
+      }),
     });
 
     const data = await response.json();

@@ -6,9 +6,13 @@ function Cart() {
   const [cart, setCart] = useState([]);
 
   const getCart = async () => {
-    const response = await fetch("http://127.0.0.1:8000/cart");
+    const user_id =
+    localStorage.getItem("user_id");
+
+    const response = await fetch(`http://127.0.0.1:8000/cart/${user_id}`);
 
     const data = await response.json();
+    
 
     setCart(data);
   };
