@@ -23,3 +23,9 @@ class CartItem(BaseModel):
     name: str
     price: int
     image: str
+
+
+class ProductCreate(BaseModel):
+    name: str
+    price: int
+    image: str

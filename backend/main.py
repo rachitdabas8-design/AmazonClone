@@ -2,11 +2,10 @@ from database import engine
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from models import Base
-
-
+from routes.address import router as address_router
 from routes.auth import router as auth_router
 from routes.cart import router as cart_router
-from routes.address import router as address_router
+from routes.product import router as product_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -22,3 +21,5 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(cart_router)
 app.include_router(address_router)
+app.include_router(product_router)
+
