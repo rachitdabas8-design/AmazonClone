@@ -18,24 +18,39 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
         User.email == user.email
     ).first()
 
-    # USER EXISTS
     if existing_user:
 
-        # PASSWORD CHECK
+      
         if existing_user.password != user.password:
             return {
                 "success": False,
                 "message": "Wrong Password"
             }
+        saved_address = db.query(Address).filter(
+            Address.user_id == existing_user.id
+        ).first()
+
+        if saved_address:
+            address = {
+                "full_name": saved_address.full_name,
+                "mobile": saved_address.mobile,
+                "house": saved_address.house,
+                "city": saved_address.city,
+                "pincode": saved_address.pincode
+            }
+        else:
+            address = None
+
         return {
         "success": True,
         "message": "Welcome Back",
-        "user_id": existing_user.id
+        "user_id": existing_user.id,
+        "address":address
        }
 
         
 
-    # NEW USER
+   
     new_user = User(
         email=user.email,
         password=user.password

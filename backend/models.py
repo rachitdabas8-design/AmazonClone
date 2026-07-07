@@ -31,3 +31,15 @@ class Cart(Base):
     name = Column(String)
     price = Column(Integer)
     image = Column(String)
+
+class Product(Base):
+        __tablename__ = "products"
+
+        id = Column(Integer, primary_key=True, index=True)
+        name = Column(String)
+        price = Column(Integer)
+        image = Column(String)
+
+
+
+
